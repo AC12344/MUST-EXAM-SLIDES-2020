@@ -5,7 +5,7 @@
 % %    rotationcw,          % change the rotation direction from counter-clockwise to clockwise
 % %    shownavsym          % show the navigation symbols
 %   ]{SDUsimple}
-%\usepackage{SDUtheme/beamerthemeSDUsimple}
+\usepackage{SDUtheme/beamerthemeSDUsimple}
 % If you want to change the colors of the various elements in the theme, edit and uncomment the following lines
 % Change the bar and sidebar colors:
 %\setbeamercolor{SDUsimple}{fg=red!20,bg=red}
@@ -82,9 +82,27 @@
   \titlepage
 \end{frame}}
 %%%%%%%%%%%%%%%%
-
+\begin{frame}{Agenda}{MANOVA}
+    \begin{itemize}
+        \item Introduction
+        \item One-Factor MANOVA
+            \begin{itemize}
+                \item Assumptions
+                \item Decomposition of variance
+                \item Wilks Lambda
+                \item Model check
+            \end{itemize}
+        \item Two-factor MANOVA 
+    \end{itemize}
+\end{frame}
+\begin{frame}{MANOVA Introduction}{MANOVA}
+    Usage  \\
+    \\
+    Factors and populations
+\end{frame}
 \begin{frame}[t]
-    \frametitle{Model}
+    \frametitle{MANOVA Introduction}
+    \framesubtitle{Model}
     \begin{figure}[H]
     \includegraphics[scale=0.5]{images/modelManoca.png}
     \end{figure}
@@ -92,7 +110,7 @@
 
 \begin{frame}[t]
 	\frametitle{MANOVA}
-	\framesubtitle{1 factor}
+	\framesubtitle{One way MANOVA}
 
 	Assumptions:
 	\begin{itemize}
@@ -100,10 +118,7 @@
 	\[
 		X_{\ell,j} \sim N \left( \mu_\ell , \Sigma_\ell  \right) 
 	.\] 
-	\item 
-		\[
-			\Sigma_1 = \Sigma_2 = \cdots = \Sigma_g
-		.\] 
+	\item \[Homoscedasticity .\]
 	\item 
 		\[
 			\mu_\ell = \mu + \tau_\ell, \hspace{1cm} \sum^{g}_{\ell = 1} n_{\ell}\tau_{\ell}=0
@@ -122,6 +137,7 @@
 
 \begin{frame}[t]
 	\frametitle{Decomposition of variance}
+	\framesubtitle{One-way MANOVA}
 	\[
 	\begin{aligned}
         SST &=
@@ -137,8 +153,8 @@
 		SSB &=
 		\sum^{g}_{\ell=1} 
 		\sum^{n_\ell}_{j=1} 
-		\left( X_{\ell}- \bar{X} \right) 
-		\left( X_{\ell}- \bar{X} \right) ^{T}\\
+		\left( \bar{X_{\ell}}- \bar{X} \right) 
+		\left( \bar{X_{\ell}}- \bar{X} \right) ^{T}\\
 	\end{aligned}
 	\] 
 	\vspace{1cm}
@@ -148,16 +164,17 @@
 	.\] 
 
 \end{frame}
-
 \begin{frame}[t]
     \frametitle{Illustration}
+    \framesubtitle{MANOVA}
     \begin{figure}[H]
     \includegraphics[scale=0.28]{clusters.png}
     \end{figure} 
 \end{frame}
+
 \begin{frame}[t]
     \frametitle{Exact Distributions of Wilks Lambda.}
-    
+    \framesubtitle{One way MANOVA}
     \begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{images/1.png}
@@ -166,6 +183,7 @@
 
 \begin{frame}[t]
     \frametitle{Approximate distribution of Wilks Lambda.}
+    \framesubtitle{Large-sample approximation }
     \[
         -\left(n-1-\frac{p+g}{2}\right)ln\left( \Lambda^*\right) \sim \chi^2_{p(g-1)}
     \]  
@@ -181,31 +199,6 @@
 \end{figure}
 \end{frame}
 
-
-\begin{frame}[t]
-	\frametitle{Model Check}
-    Hypothesis:
-	\[
-		\begin{aligned}
-			H_0 &: \forall \Sigma_\ell = \Sigma\\
-			H_1 &: \exists \Sigma_\ell \neq \Sigma
-		\end{aligned}
-	\] 
-    
-    Likelihood Ratio Test
-\[
-\Lambda = \frac{\underset{\Sigma}{max}L(\Sigma)}{\underset{\Sigma_1,\cdots,\Sigma_g}{max}L(\Sigma_1,\cdots,\Sigma_g)}  
-\] 
-    \[
-        -2\log\Lambda =  \left((n-g)\log|S_p| - \sum^{g}_{l=1}(n_l - 1) \log|S_l| \right)  
-    \]
-    Reject:
-    \[
-        -2c \cdot \log\Lambda > \chi^2_{p \frac{p+1}{2}, \alpha}
-
-    \] 
-
-\end{frame}
 
 
 \begin{frame}[t]
@@ -251,7 +244,64 @@
 	\end{tabular}
 		\end{centering}
 \end{frame}
+\begin{frame}[t]
+	\frametitle{Decomposition of variance}
+	\framesubtitle{Two-way MANOVA}
+	\[
+	\begin{aligned}
+        SST &= SSW + SSB1 + SSB2 + SSI \\
+        SST &= Total \\
+		SSW &= Within \\
+		SSB1 &= Between 1 \\
+		SSB2 &= Between 2 \\
+		SSI &= Interaction
+	\end{aligned}
+	\] 
+	Test for:\\
+	\begin{itemize}
+	    \item Interaction
+	    \item Factor 1
+	    \item Factor 2
+	\end{itemize}
 
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Model Check}
+	\framesubtitle{Check for Multivariate Normality}
+    ScatterMstrix:
+    \begin{figure}
+        \centering
+        \includegraphics[scale =0.18]{03/images/scatterplot.png}
+    \end{figure}
+    Mahalanobis QQ plot
+
+\end{frame}
+\begin{frame}[t]
+	\frametitle{Model Check}
+	\framesubtitle{Check for Homoscedasticity}
+    Hypothesis:
+	\[
+		\begin{aligned}
+			H_0 &: \forall \Sigma_\ell = \Sigma\\
+			H_1 &: \exists \Sigma_\ell \neq \Sigma
+		\end{aligned}
+	\] 
+    
+    Likelihood Ratio Test
+\[
+\Lambda = \frac{\underset{\Sigma}{max}L(\Sigma)}{\underset{\Sigma_1,\cdots,\Sigma_g}{max}L(\Sigma_1,\cdots,\Sigma_g)}  
+\] 
+    %\[
+    %    -2\log\Lambda =  \left((n-g)\log|S_p| - \sum^{g}_{l=1}(n_l - 1) \log|S_l| \right)  
+    %\]
+    Reject:
+    \[
+        -2c \cdot \log\Lambda > \chi^2_{p \frac{p+1}{2}, \alpha}
+
+    \] 
+
+\end{frame}
 
 
 \end{document}
