@@ -5,7 +5,7 @@
 % %    rotationcw,          % change the rotation direction from counter-clockwise to clockwise
 % %    shownavsym          % show the navigation symbols
 %   ]{SDUsimple}
-%\usepackage{SDUtheme/beamerthemeSDUsimple}
+\usepackage{SDUtheme/beamerthemeSDUsimple}
 % If you want to change the colors of the various elements in the theme, edit and uncomment the following lines
 % Change the bar and sidebar colors:
 %\setbeamercolor{SDUsimple}{fg=red!20,bg=red}
@@ -143,11 +143,21 @@ University of Southern Denmark
 		\includegraphics[scale=0.15]{images/f.png}
 	\end{figure} 
 \end{frame}
+\begin{frame}{Two-Sample Hotelling T² Tests}{One- and Two-sample Hotelling T² Tests}
+    Use: \\
+    Assumptions: \\
+        \begin{itemize}
+            \item Observations are MVN distributed 
+        \end{itemize}
+    Two types: \\
+    \begin{itemize}
+        \item Paired comparison 
+        \item Unpaired comparison
+    \end{itemize}
+\end{frame}
 
-\begin{frame}{Hypothesis Testing on $\mu$}{Two-sample}
+\begin{frame}{Paired comparison}{Two-sample}
 
-	Assumptions.
-	
 	Model:
 	\begin{itemize}
 		\item Pair wise observations. $X$ and $Y$.
@@ -166,13 +176,41 @@ University of Southern Denmark
 	\end{align*}
 
 \end{frame}
-\begin{frame}
-{Frame Title}
-    fsd
+
+\begin{frame}{Hypothesis Testing}{Paired comparison}
+    Estimates: \\
+        \begin{itemize}
+            \item $\bar{D} = \frac{1}{n} \sum^n_{j=1} D_j$ 
+            \item $S_d = \frac{1}{n-1} \sum^n_{j=1} \left(D_j - \bar{D} \right)^T \left(D_j - \bar{D} \right)$ 
+        \end{itemize}
+        Test Statistic: \\
+        \begin{center}
+                    \quad $T_0^2 = \left( \bar{D} - \delta_0 \right)^T \left( \frac{S_d}{n} \right) \left( \bar{D} - \delta_0 \right)$ \\
+        \end{center}
+    Reject: \\
+    \begin{itemize}
+        \item p-value
+        \item Critical value
+    \end{itemize}
 \end{frame}
+
 \begin{frame}[t]
-	\frametitle{Hypothesis Testing on $\mu$}
-	\framesubtitle{Equal $\Sigma$}
+	\frametitle{Unpaired Comparison }
+	\framesubtitle{Barlett Tes}
+	
+	Hypothesis:
+	\[
+		\begin{aligned}
+			H_0 &: \Sigma_X = \Sigma_Y\\
+			H_1 &: \Sigma_X \neq \Sigma_Y
+		\end{aligned}
+	.\] 
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Unpaired Comparison }
+	\framesubtitle{Hypothesis Testing on $\mu$}
+	
 	\begin{itemize}
 		\item Equal $\Sigma$\\
 			\[
@@ -189,35 +227,99 @@ University of Southern Denmark
 			.\] 
 	\end{itemize}
 \end{frame}
+
 \begin{frame}[t]
-	\frametitle{Confidence regions}
-	\framesubtitle{subtitle}
-	Confidence region for $\delta$
-	\[
-		\forall \delta \in {\rm I\!R}^{P}:
-		\left( \bar{D} - \delta  \right) ^{T}
-		\left( \frac{S_d}{n}  \right) ^{-1}
-		\left( \bar{D} - \delta  \right)
-		<
-		\frac{p  \left( n-1 \right) }{n-p} 
-		F_{p,n-p,\alpha}
-	.\] 
+	\frametitle{Confidence regions and Intervals}
+	\framesubtitle{One- and Two-sample Hotelling $T^2$ Tests}
+	Confidence region for $\delta$ 
+	%\[
+	%	\forall \delta \in {\rm I\!R}^{P}:
+	%	\left( \bar{D} - \delta  \right) ^{T}
+	%	\left( \frac{S_d}{n}  \right) ^{-1}
+	%	\left( \bar{D} - \delta  \right)
+	%	<
+	%	\frac{p  \left( n-1 \right) }{n-p} 
+	%	F_{p,n-p,\alpha}
+	%.\] 
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=0.35\linewidth]{../01/images/1.png}
 	\end{figure}
-\end{frame}
-
-\begin{frame}[t]
-	\frametitle{Bartlett test}
-	\framesubtitle{subtitle}
-	Hypothesis:
-	\[
-		\begin{aligned}
-			H_0 &: \Sigma_X = \Sigma_Y\\
-			H_1 &: \Sigma_X \neq \Sigma_Y
-		\end{aligned}
-	.\] 
+	 Confidence Intervals: \\
+        \quad Marginal \\
+        \quad Bonferroni \\
+        \quad Simultaneous \\
 \end{frame}
 
 \end{document}
+
+\begin{frame}{Two-Sample Hotelling T² Tests}{One- and Two-sample Hotelling T² Tests}
+    Use: \\
+        \quad Given two populations $X_{j1}$, $X_{j2}$ for $j = 1,\,2\,...,\,n$ \\
+        \quad Determine plausibility of $\mu_1 = \mu_2$ \\
+    Assumptions: \\
+        \quad Observations are MVN distributed \\
+    Two types: \\
+        \quad Paired comparison \\
+        \quad Unpaired comparison \\
+    Largely similar to One-Sample Hotelling \\
+\end{frame}
+
+
+\begin{frame}{Paired Comparison}{One- and Two-sample Hotelling T² Tests}
+    Assumptions: \\
+        \quad Observations are MVN distributed \\
+        \quad Observations are pairwise \\
+    Given: \\
+        \quad $X_{j1} \sim \mathcal{N}_p(\mu_1,\, \Sigma_1)$ \\
+        \quad $X_{j2} \sim \mathcal{N}_p(\mu_2,\, \Sigma_2)$ \\
+    Difference Model: \\
+        \quad $D_j = X_{1j} - X_{2j} \sim \mathcal{N}_p(\delta,\, \Sigma_d )$, where $\delta = \mu_1 - \mu_2$ \\
+    Hypothesis: \\
+        \quad $H_0$: $\delta = \delta_0$ \\
+        \quad $H_1$: $\delta \neq \delta_0$ \\
+\end{frame}
+
+
+\begin{frame}{Hypothesis Testing}{One- and Two-sample Hotelling T² Tests}
+    Test Statistic: \\
+        \quad $T_0^2 = \left( \bar{D} - \delta_0 \right)^T \left( \frac{S_d}{n} \right) \left( \bar{D} - \delta_0 \right)$ \\
+    Estimates: \\
+        \quad $\bar{D} = \frac{1}{n} \sum^n_{j=1} D_j$ \\
+        \quad $S_d = \frac{1}{n-1} \sum^n_{j=1} \left(D_j - \bar{D} \right)^T \left(D_j - \bar{D} \right)$ \\
+    Concluding: \\
+        \quad Same approach as for One-Sample Hotelling \\
+        \qquad Reject $H_0$ if $T_0^2 > \frac{p(n-1)}{n-p}F_{p,n-p}(\alpha)$ \\
+        \qquad Reject $H_0$ if p-value ($p = P\left[ F_{p, n-p} > \frac{n-p}{p(n-1)}T^2_0 \right]$) is small. 
+\end{frame}
+
+\begin{frame}{Non-paired Comparison}{One- and Two-sample Hotelling T² Tests}
+    Used in cases where we cannot do paired experiments \\
+    Two cases exist: \\
+    \quad 1) Equal Variance \\
+    \quad 2) Unequal Variance \\ 
+    Which of the two cases can be determined using Bartlett's Test \\
+    $X_{1j}$, $X_{2j}$ are assumed independent
+\end{frame}
+
+
+\begin{frame}{Equal Variance Case}{One- and Two-sample Hotelling T² Tests}
+    If Barlett Test succeeds, we can pool covariance, such that: \\
+        \quad $ \hat{\Sigma} = S_p = \frac  {\left( n_1 - 1 \right) S_1 + \left( n_2 - 1 \right) S_2}
+                                            {\left( n_1 - 1 \right) + \left( n_2 - 1 \right) } $ \\
+        \quad Where: \\
+            \qquad $S_1 = \frac{1}{n_1 - 1} \sum^{n_1}_{j=1} \left( X_{1j} - \bar{X}_1 \right)\left( X_{1j} - \bar{X}_1 \right)^T $ \\
+            \qquad $S_2 = \frac{1}{n_2 - 1} \sum^{n_2}_{j=1} \left( X_{2j} - \bar{X}_2 \right)\left( X_{2j} - \bar{X}_2 \right)^T $ \\
+    Test Statistic: \\
+        \quad $T^2_0 = \left( \left( \bar{X}_1 - \bar{X}_2 \right) - \delta_0 \right)^T \left[S_p \left(\frac{1}{n_1}+\frac{1}{n_2} \right) \right] \left( \left( \bar{X}_1 - \bar{X}_2 \right) - \delta_0 \right)$ \\
+    Reject $H_0$ if $T_0^2 > \frac{p(n_1+n_2-2)}{n_1+n_2-p-1} F_{p, n_1+n_2 -p -1}(\alpha)$ \\
+\end{frame}
+
+\begin{frame}{Unequal Variance Case}{One- and Two-sample Hotelling T² Tests}
+    If Bartlett Test fails, we cannot perform pooling \\
+    Instead, must rely on Central Limit Theorem \\
+    Here, test statistic becomes: \\
+    \quad $T^2_0 = \left( \left( \bar{X}_1 - \bar{X}_2 \right) - \delta_0 \right)^T \left( \frac{S_1}{n_1}+\frac{S_2}{n_2} \right) \left( \left( \bar{X}_1 - \bar{X}_2 \right) - \delta_0 \right)$ \\
+    Reject $H_0$ if $T_0^2 > \frac{p(n_1+n_2-2)}{n_1+n_2-p-1} F_{p, n_1+n_2 -p -1}(\alpha)$ \\
+\end{frame}
+
